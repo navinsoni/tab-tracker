@@ -4,22 +4,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
+const config = require('../config/config')
+const {sequalize} = require('../models')
 
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/status', (req, res) => {
-  res.send({
-    message: 'hello world!'
-  })
-})
+require('./routes')(app)
 
-app.post('/register', (req, res) => {
-  res.send({
-    message: `Hello ${req.body.email}! Your email has been registered! Have fun!`
+sequalize.sync()
+  .then(() => {
+    app.listen(config.port)
   })
-})
-
-app.listen(process.env.PORT || 8082)
