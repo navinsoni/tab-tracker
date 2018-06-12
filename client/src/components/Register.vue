@@ -32,7 +32,7 @@ methods:{
         'password':this.password
       })
       console.log('clicked on register', this.email, this.password)
-      console.log(res) 
+      console.log(res)
     }
   }
 }

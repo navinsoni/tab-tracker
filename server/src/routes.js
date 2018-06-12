@@ -1,3 +1,5 @@
+const AuthenticationController = require('./controllers/AuthenticationController')
+
 module.exports = (app) => {
   app.get('/status', (req, res) => {
     res.send({
@@ -5,9 +7,5 @@ module.exports = (app) => {
     })
   })
 
-  app.post('/register', (req, res) => {
-    res.send({
-      message: `Hello ${req.body.email}! Your email has been registered! Have fun!`
-    })
-  })
+  app.post('/register', AuthenticationController.register)
 }
