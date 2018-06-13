@@ -12,8 +12,10 @@
       type='password'
       name='password'
       placeholder='password'
-      v-model=password
+      v-model='password'
   />
+  <br>
+  <div class='error' v-html='error' />
   <br>
   <button @click=register>
   Register
@@ -25,19 +27,30 @@
 <script>
 import authenticationService from '@/services/AuthenticationService'
 export default {
+data() {
+  return {email: '',
+    password: '',
+    error: null}
+},
 methods:{
     async register(){
+    try {
       const res = await authenticationService.register({
         'email':this.email,
         'password':this.password
       })
-      console.log('clicked on register', this.email, this.password)
-      console.log(res)
+    }
+    catch (error) {
+      this.error = error.response.data.error
     }
   }
+}
 }
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
+.error {
+  color: red
+}
 </style>

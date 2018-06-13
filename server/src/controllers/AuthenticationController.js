@@ -6,8 +6,7 @@ module.exports = {
       res.send(user.toJSON())
     } catch (err) {
       // statements
-      console.log(err)
-      res.send({error: `Email ${req.body.email} already in use!`})
+      res.status(400).send({error: `Email ${req.body.email} already in use!`})
     }
   }
 }
