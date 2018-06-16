@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h1>Register</h1>
+  <h1>Login</h1>
 
   <v-text-field
           name="email"
@@ -16,8 +16,8 @@
   <br>
   <div class='myerror' v-html='error' />
   <br>
-  <button @click=register>
-  Register
+  <button @click=login>
+  Login
   </button>
   </div>
 </template>
@@ -32,9 +32,9 @@ data() {
     error: null}
 },
 methods:{
-    async register(){
+    async login(){
     try {
-      const res = await authenticationService.register({
+      const res = await authenticationService.login({
         'email':this.email,
         'password':this.password
       })
